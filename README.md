@@ -31,6 +31,14 @@
 ### 3) 临床示例：COPD 合并 PH 风险评估
 ![临床示例](docs/arch_3.png)
 
+### 4) GraphRAG 自动构建的知识图谱
+
+下图是系统用 **Claude 多智能体从 76 条 ESC/ERS 指南证据块自动抽取实体与关系**（262 实体 / 208 关系）、归一去重并合并诊断骨架后构建的知识图谱（力导向布局、按类型着色）：**84 节点 / 182 边 / 8 个语义社区**，每条关系都带**指南页码出处**。
+
+![知识图谱](docs/kg_graph.png)
+
+**8 个诊断主题社区（GraphRAG 全局摘要层）**：血流动力学定义与右心导管 · 临床五大分类与左心鉴别 · 超声/CT 影像征象与诊断概率 · Group 3 肺病相关 PH · 右心受累与肺血管表型 · CTEPH 鉴别 · 风险分层与预后 · 指南来源引用。前端 Scene 3 会实时高亮检索命中的节点与边路径（节点类型：🔴疾病 / 🔵指标 / 🟣概念 / 🟢来源）。
+
 ---
 
 ## 三、端到端演示（前端）
@@ -86,7 +94,8 @@
 frontend/                前端演示（纯静态 SPA，读取 3 个 JSON）
   index.html · app.js · styles.css
   data/cases.json        260 例 · 17 维 SCR 特征 + 金标准（匿名）
-  data/kg.json           知识图谱 45 节点 / 57 边（页码级出处）
+  data/kg.json           知识图谱 84 节点 / 182 边 / 8 社区（GraphRAG 自动构建）
+  pipeline/community_reports.json  8 个社区摘要（GraphRAG 全局层）
   data/debates.json      260 例 · GraphRAG 检索 + 多智能体辩论 + 终判
 pipeline/                可复现的数据生成流水线
   build_kg.py            指南知识 → kg.json

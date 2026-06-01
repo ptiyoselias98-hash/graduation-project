@@ -1,0 +1,152 @@
+{
+  "communities": [
+    {
+      "id": "hemodynamics",
+      "title": "血流动力学定义与右心导管群",
+      "members": [
+        "PH",
+        "MPAP",
+        "PAWP",
+        "PVR",
+        "CI",
+        "RAP",
+        "SVO2",
+        "PRECAP",
+        "POSTCAP",
+        "EXPH",
+        "MPAPCO",
+        "X_rhc",
+        "X_mpap_20_mmhg",
+        "X_unclassified_ph"
+      ],
+      "summary": "本群是 PH 诊断的血流动力学金标准核心，以右心导管（RHC）实测为基础。ESC/ERS 2022 将 PH 重新定义为 mPAP>20 mmHg（旧界值 25 下调，p.3637/3646）；并据 PAWP≤15 mmHg 且 PVR>2 WU 划分毛细血管前 PH（PRECAP，对应 PAH/Group3/CTEPH），PAWP>15 mmHg 划分毛细血管后 PH（POSTCAP，对应左心病）。运动性 PH 由 mPAP/CO 斜率>3 mmHg/L/min 定义（p.3637）；CI、RAP、SvO2 进一步用于血流动力学风险评估。",
+      "key_pages": [3637, 3646]
+    },
+    {
+      "id": "clinical-classification",
+      "title": "临床五大分类与左心鉴别群",
+      "members": [
+        "PAH",
+        "PH_LHD",
+        "GROUP3",
+        "CTEPH",
+        "X_group_1",
+        "X_group_1_ph",
+        "X_group_2",
+        "X_group_4_ph",
+        "X_hfpef",
+        "X_hfref",
+        "X_lvef",
+        "X_lung_disease",
+        "X_ph_centre"
+      ],
+      "summary": "本群覆盖 ESC/ERS PH 五大临床分类的归属与互相鉴别（p.3638/3651/3692）。Group 1=PAH（毛细血管前，需 PH 中心转诊），Group 2=PH-左心病（含 HFpEF/HFrEF，由 LVEF 区分，多为毛细血管后），Group 3=肺病相关 PH，Group 4=CTEPH。诊断路径强调把 PAH 与肺病、左心病、CTEPH 逐一鉴别，PAWP/LVEF 是区分前/后毛细血管 PH 的关键。",
+      "key_pages": [3638, 3651, 3692]
+    },
+    {
+      "id": "echo-ct-imaging",
+      "title": "超声/CT 影像征象与诊断概率群",
+      "members": [
+        "X_echocardiography",
+        "X_echocardiographic_probab",
+        "TRV",
+        "X_spap",
+        "RVLV_E",
+        "LVEI",
+        "TAPSE",
+        "RAAREA",
+        "RVOT_AT",
+        "RVOT_W",
+        "PA_AO",
+        "MPA_CT",
+        "RVLV_CT",
+        "PA_CALC",
+        "X_chest_x_ray",
+        "X_ecg",
+        "X_diagnostic_algorithm",
+        "X_ct_pulmonary_angiography"
+      ],
+      "summary": "本群是无创影像筛查与诊断概率评估核心。超声以峰值三尖瓣反流速度 TRV>2.8 m/s 提示中高 PH 概率（p.3643/3645），辅以 RV/LV>1.0、室间隔变平 LVEI、TAPSE/sPAP、RA 面积、RVOT 加速时间等组成超声概率分级；CT 以 PA 直径>29 mm、PA/AO>0.9、RV/LV>1.0 支持 PH，并与 ECG、胸片、BNP 共同驱动诊断算法（p.3643/3644/3648/3692）。",
+      "key_pages": [3643, 3644, 3645, 3648, 3692]
+    },
+    {
+      "id": "group3-copd",
+      "title": "Group 3 肺病相关 PH 与 COPD/肺气肿群",
+      "members": [
+        "COPD",
+        "COPD_PH",
+        "EMPHYSEMA",
+        "X_hypoxaemia",
+        "X_dlco_45_predicted",
+        "DLCO",
+        "PACO2",
+        "LAA950",
+        "LAA856",
+        "MLD",
+        "BV5",
+        "GOLD",
+        "ATS"
+      ],
+      "summary": "本群聚焦 Group 3 肺病相关 PH，尤其 COPD/肺气肿进展为 COPD-PH 的影像与功能表型（p.3651/3690）。低氧血症与 DLCO 显著下降（DLCO<45% 预测值）提示肺血管受累偏重；CT 定量以 %LAA-950（<−950HU 占比）和 %LAA-856、MLD、BV5 量化肺气肿与外周血管丢失，GOLD 2024 与 ATS/ERS PH-CLD 2024 为主要依据。",
+      "key_pages": [3651, 3690]
+    },
+    {
+      "id": "vascular-phenotype",
+      "title": "右心受累与肺血管表型（修剪）群",
+      "members": [
+        "VASCPHEN",
+        "PRUNING",
+        "SEVERE3",
+        "X_severe_ph",
+        "X_non_severe_ph",
+        "X_pvr_5_wu",
+        "X_composite_echocardiograp",
+        "X_rv_lv_ratio",
+        "X_reveal"
+      ],
+      "summary": "本群描述严重 Group 3 PH 的肺血管表型与右心受累分层。ATS/ERS 与 ESC 以 PVR>5 WU 区分严重/非严重 Group 3 PH（p.3690/3691），严重者多伴 DLCO 下降、低氧血症与血管修剪（外周小血管 BV5 减少）。复合超声指标（RV:LV 比值、RA 面积）与 REVEAL 风险元素共同刻画血管表型与右心功能恶化趋势。",
+      "key_pages": [3690, 3691]
+    },
+    {
+      "id": "cteph-differential",
+      "title": "CTEPH 鉴别与灌注/抗凝群",
+      "members": [
+        "X_ctepd",
+        "X_ctepd_without_ph",
+        "X_ctpa",
+        "VQ",
+        "X_mismatched_perfusion_def",
+        "X_therapeutic_anticoagulat",
+        "X_cteph_diagnostic_algorit",
+        "X_cpet"
+      ],
+      "summary": "本群覆盖 CTEPH（Group 4）的鉴别诊断流程（p.3651/3693/3694）。核心筛查为 V/Q 扫描显示节段性不匹配灌注缺损，CTPA 确认慢性血栓栓塞性肺疾病（CTEPD）；伴 PH 者诊断 CTEPH，不伴 PH 者（CTEPD without PH）经 CPET/超声进一步区分。所有 CTEPD 均需≥3 个月有效抗凝，并进入 CTEPH 诊断算法。",
+      "key_pages": [3651, 3693, 3694]
+    },
+    {
+      "id": "risk-stratification",
+      "title": "风险分层与预后模型群",
+      "members": [
+        "X_three_strata_model",
+        "X_four_strata_model",
+        "X_who_fc",
+        "X_6mwd",
+        "BNP",
+        "X_1_year_mortality"
+      ],
+      "summary": "本群为 PAH 的多参数风险分层。ESC/ERS 三层模型（低/中/高危）整合 WHO-FC、6MWD、BNP/NT-proBNP 及血流动力学（RAP、CI、SvO2）估算 1 年死亡率（p.3656/3657）；随访推荐四层模型，以 WHO-FC、6MWD、BNP 三项简化分层指导治疗升级（p.3658/3659）。",
+      "key_pages": [3656, 3657, 3658, 3659]
+    },
+    {
+      "id": "guideline-sources",
+      "title": "指南来源与证据引用群",
+      "members": [
+        "ESC",
+        "WSPH",
+        "HUMBERT"
+      ],
+      "summary": "本群为知识图谱的循证来源锚点。ESC/ERS 2022 PH 指南为主干（mPAP>20、PVR>2 WU 等定义来源，p.3637 起），PVRI 第 6 届 WSPH 提供 PVR 阈值与血管修剪证据，Humbert 2022 为权威综述，统一支撑全图的诊断阈值与分类逻辑。",
+      "key_pages": [3637]
+    }
+  ]
+}

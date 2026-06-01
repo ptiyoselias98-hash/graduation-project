@@ -27,10 +27,10 @@
     "classifier": "RandomForest (17-dim SCR, 5-fold CV)"
   },
   "kg_stats": {
-    "nodes": 45,
-    "edges": 57,
-    "communities_l0": 5,
-    "differentiates": 4,
+    "nodes": 84,
+    "edges": 182,
+    "communities_l0": 8,
+    "differentiates": 17,
     "sources": [
       "ESC/ERS 2022",
       "GOLD 2024",
@@ -41,7 +41,7 @@
   },
   "system": {
     "sat_model": "SAT-Nano (CT 8-class anatomy)",
-    "rag_model": "GraphRAG · ESC/ERS KG + 指南向量检索",
+    "rag_model": "GraphRAG · 自动构建图谱 84节点/182边/8社区 + 向量检索",
     "llm": "Multi-agent (Pulmo/Cardio/Radio + Coordinator)",
     "gpu": "2× RTX 3090"
   },
