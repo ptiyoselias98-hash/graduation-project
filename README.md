@@ -119,6 +119,18 @@ python -m http.server 8099
 # 浏览器访问 http://localhost:8099/  （或 ?autoplay=1&speed=2 自动演示）
 ```
 
+### 服务器常驻诊断服务（pipeline/pulmo_dx.py）
+
+诊断管线已部署为实验室服务器上的**常驻可跑服务**（系统 python3.8、**纯 stdlib 零安装**；检索走 `text-embedding-v4`，多智能体辩论走 `qwen-plus`，经 LiteLLM/OpenAI 兼容端点）：
+
+```bash
+python3 pulmo_dx.py --case <cohort_id>      # 单例诊断（实时检索 + 三智能体辩论 + 终判）
+python3 pulmo_dx.py --all  --out out.json    # 全队列批量
+python3 pulmo_dx.py --serve --port 8077      # 常驻 HTTP 服务：POST /diagnose {scr:{...}, rf_proba_ph}
+```
+
+> **凭据安全**：DashScope key 经 stdin/环境变量注入，**绝不写入命令行或入库**；已实测「服务器→DashScope 连通 + 单例诊断端到端跑通」。
+
 流水线复现需要原始队列数据（含隐私，未公开）与 LLM 凭据；脚本通过环境变量读取，**不含任何密钥**。
 
 ---
