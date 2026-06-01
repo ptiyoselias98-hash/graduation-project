@@ -216,3 +216,21 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- project private / sensitive (NEVER commit) ---
+id_imss
+id_ed25519*
+.env
+_case_mapping_private.json
+sat_derived_scr_*.json
+v4_oof_proba.json
+pulmoagent_v4_*.json
+batches/
+debate_parts/
+_edgeprofile/
+_ep_*/
+_probe*.sh
+*.tgz
+*.output
+out_cases.json
+out_debates.json

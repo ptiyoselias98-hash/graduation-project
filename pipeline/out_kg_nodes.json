@@ -1,0 +1,227 @@
+[
+  {
+    "id": "ESC",
+    "label": "ESC/ERS 2022",
+    "type": "source"
+  },
+  {
+    "id": "GOLD",
+    "label": "GOLD 2024",
+    "type": "source"
+  },
+  {
+    "id": "ATS",
+    "label": "ATS/ERS PH-CLD",
+    "type": "source"
+  },
+  {
+    "id": "WSPH",
+    "label": "PVRI 6th WSPH",
+    "type": "source"
+  },
+  {
+    "id": "HUMBERT",
+    "label": "Humbert 2022",
+    "type": "source"
+  },
+  {
+    "id": "PH",
+    "label": "肺动脉高压 PH",
+    "type": "disease"
+  },
+  {
+    "id": "PAH",
+    "label": "PAH (Group 1)",
+    "type": "disease"
+  },
+  {
+    "id": "PH_LHD",
+    "label": "PH-左心 (Group 2)",
+    "type": "disease"
+  },
+  {
+    "id": "GROUP3",
+    "label": "肺病相关PH (Group 3)",
+    "type": "disease"
+  },
+  {
+    "id": "COPD_PH",
+    "label": "COPD-PH",
+    "type": "disease"
+  },
+  {
+    "id": "CTEPH",
+    "label": "CTEPH (Group 4)",
+    "type": "disease"
+  },
+  {
+    "id": "COPD",
+    "label": "COPD",
+    "type": "disease"
+  },
+  {
+    "id": "EMPHYSEMA",
+    "label": "肺气肿",
+    "type": "disease"
+  },
+  {
+    "id": "PRECAP",
+    "label": "毛细血管前 PH",
+    "type": "concept"
+  },
+  {
+    "id": "POSTCAP",
+    "label": "毛细血管后 PH",
+    "type": "concept"
+  },
+  {
+    "id": "SEVERE3",
+    "label": "严重 Group3 PH",
+    "type": "concept"
+  },
+  {
+    "id": "VASCPHEN",
+    "label": "肺血管表型",
+    "type": "concept"
+  },
+  {
+    "id": "PRUNING",
+    "label": "血管修剪",
+    "type": "concept"
+  },
+  {
+    "id": "EXPH",
+    "label": "运动性 PH",
+    "type": "concept"
+  },
+  {
+    "id": "MPAP",
+    "label": "mPAP",
+    "type": "indicator"
+  },
+  {
+    "id": "PAWP",
+    "label": "PAWP",
+    "type": "indicator"
+  },
+  {
+    "id": "PVR",
+    "label": "PVR",
+    "type": "indicator"
+  },
+  {
+    "id": "MPAPCO",
+    "label": "mPAP/CO 斜率",
+    "type": "indicator"
+  },
+  {
+    "id": "CI",
+    "label": "心指数 CI",
+    "type": "indicator"
+  },
+  {
+    "id": "RAP",
+    "label": "RAP",
+    "type": "indicator"
+  },
+  {
+    "id": "SVO2",
+    "label": "SvO2",
+    "type": "indicator"
+  },
+  {
+    "id": "TRV",
+    "label": "峰值 TRV",
+    "type": "indicator"
+  },
+  {
+    "id": "RVLV_E",
+    "label": "RV/LV (超声)",
+    "type": "indicator"
+  },
+  {
+    "id": "LVEI",
+    "label": "室间隔变平 LVEI",
+    "type": "indicator"
+  },
+  {
+    "id": "TAPSE",
+    "label": "TAPSE/sPAP",
+    "type": "indicator"
+  },
+  {
+    "id": "RAAREA",
+    "label": "RA 面积",
+    "type": "indicator"
+  },
+  {
+    "id": "RVOT_AT",
+    "label": "RVOT 加速时间",
+    "type": "indicator"
+  },
+  {
+    "id": "PA_AO",
+    "label": "PA/AO 比值",
+    "type": "indicator"
+  },
+  {
+    "id": "MPA_CT",
+    "label": "PA 直径 (CT)",
+    "type": "indicator"
+  },
+  {
+    "id": "RVLV_CT",
+    "label": "RV/LV (CT)",
+    "type": "indicator"
+  },
+  {
+    "id": "RVOT_W",
+    "label": "RVOT 壁厚",
+    "type": "indicator"
+  },
+  {
+    "id": "BV5",
+    "label": "BV5 / 外周血管",
+    "type": "indicator"
+  },
+  {
+    "id": "PA_CALC",
+    "label": "PA 壁钙化",
+    "type": "indicator"
+  },
+  {
+    "id": "DLCO",
+    "label": "DLCO",
+    "type": "indicator"
+  },
+  {
+    "id": "PACO2",
+    "label": "PaCO2",
+    "type": "indicator"
+  },
+  {
+    "id": "BNP",
+    "label": "BNP/NT-proBNP",
+    "type": "indicator"
+  },
+  {
+    "id": "LAA950",
+    "label": "%LAA-950",
+    "type": "indicator"
+  },
+  {
+    "id": "LAA856",
+    "label": "%LAA-856",
+    "type": "indicator"
+  },
+  {
+    "id": "MLD",
+    "label": "MLD",
+    "type": "indicator"
+  },
+  {
+    "id": "VQ",
+    "label": "V/Q 扫描",
+    "type": "indicator"
+  }
+]

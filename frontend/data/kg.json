@@ -1,0 +1,822 @@
+{
+  "nodes": [
+    {
+      "id": "ESC",
+      "label": "ESC/ERS 2022",
+      "type": "source",
+      "x": 0.2,
+      "y": 0.05,
+      "size": 15
+    },
+    {
+      "id": "GOLD",
+      "label": "GOLD 2024",
+      "type": "source",
+      "x": 0.355,
+      "y": 0.05,
+      "size": 15
+    },
+    {
+      "id": "ATS",
+      "label": "ATS/ERS PH-CLD",
+      "type": "source",
+      "x": 0.51,
+      "y": 0.05,
+      "size": 15
+    },
+    {
+      "id": "WSPH",
+      "label": "PVRI 6th WSPH",
+      "type": "source",
+      "x": 0.665,
+      "y": 0.05,
+      "size": 15
+    },
+    {
+      "id": "HUMBERT",
+      "label": "Humbert 2022",
+      "type": "source",
+      "x": 0.82,
+      "y": 0.05,
+      "size": 15
+    },
+    {
+      "id": "PH",
+      "label": "肺动脉高压 PH",
+      "type": "disease",
+      "x": 0.2,
+      "y": 0.24,
+      "size": 34
+    },
+    {
+      "id": "PAH",
+      "label": "PAH (Group 1)",
+      "type": "disease",
+      "x": 0.289,
+      "y": 0.36,
+      "size": 34
+    },
+    {
+      "id": "PH_LHD",
+      "label": "PH-左心 (Group 2)",
+      "type": "disease",
+      "x": 0.377,
+      "y": 0.24,
+      "size": 28
+    },
+    {
+      "id": "GROUP3",
+      "label": "肺病相关PH (Group 3)",
+      "type": "disease",
+      "x": 0.466,
+      "y": 0.36,
+      "size": 32
+    },
+    {
+      "id": "COPD_PH",
+      "label": "COPD-PH",
+      "type": "disease",
+      "x": 0.554,
+      "y": 0.24,
+      "size": 34
+    },
+    {
+      "id": "CTEPH",
+      "label": "CTEPH (Group 4)",
+      "type": "disease",
+      "x": 0.643,
+      "y": 0.36,
+      "size": 30
+    },
+    {
+      "id": "COPD",
+      "label": "COPD",
+      "type": "disease",
+      "x": 0.731,
+      "y": 0.24,
+      "size": 30
+    },
+    {
+      "id": "EMPHYSEMA",
+      "label": "肺气肿",
+      "type": "disease",
+      "x": 0.82,
+      "y": 0.36,
+      "size": 30
+    },
+    {
+      "id": "PRECAP",
+      "label": "毛细血管前 PH",
+      "type": "concept",
+      "x": 0.2,
+      "y": 0.45,
+      "size": 27
+    },
+    {
+      "id": "POSTCAP",
+      "label": "毛细血管后 PH",
+      "type": "concept",
+      "x": 0.324,
+      "y": 0.55,
+      "size": 19
+    },
+    {
+      "id": "SEVERE3",
+      "label": "严重 Group3 PH",
+      "type": "concept",
+      "x": 0.448,
+      "y": 0.45,
+      "size": 25
+    },
+    {
+      "id": "VASCPHEN",
+      "label": "肺血管表型",
+      "type": "concept",
+      "x": 0.572,
+      "y": 0.55,
+      "size": 23
+    },
+    {
+      "id": "PRUNING",
+      "label": "血管修剪",
+      "type": "concept",
+      "x": 0.696,
+      "y": 0.45,
+      "size": 21
+    },
+    {
+      "id": "EXPH",
+      "label": "运动性 PH",
+      "type": "concept",
+      "x": 0.82,
+      "y": 0.55,
+      "size": 17
+    },
+    {
+      "id": "MPAP",
+      "label": "mPAP",
+      "type": "indicator",
+      "x": 0.2,
+      "y": 0.86,
+      "size": 16
+    },
+    {
+      "id": "PAWP",
+      "label": "PAWP",
+      "type": "indicator",
+      "x": 0.303,
+      "y": 0.94,
+      "size": 18
+    },
+    {
+      "id": "PVR",
+      "label": "PVR",
+      "type": "indicator",
+      "x": 0.407,
+      "y": 0.86,
+      "size": 20
+    },
+    {
+      "id": "MPAPCO",
+      "label": "mPAP/CO 斜率",
+      "type": "indicator",
+      "x": 0.51,
+      "y": 0.94,
+      "size": 16
+    },
+    {
+      "id": "CI",
+      "label": "心指数 CI",
+      "type": "indicator",
+      "x": 0.613,
+      "y": 0.86,
+      "size": 16
+    },
+    {
+      "id": "RAP",
+      "label": "RAP",
+      "type": "indicator",
+      "x": 0.717,
+      "y": 0.94,
+      "size": 16
+    },
+    {
+      "id": "SVO2",
+      "label": "SvO2",
+      "type": "indicator",
+      "x": 0.82,
+      "y": 0.86,
+      "size": 16
+    },
+    {
+      "id": "TRV",
+      "label": "峰值 TRV",
+      "type": "indicator",
+      "x": 0.1,
+      "y": 0.34,
+      "size": 16
+    },
+    {
+      "id": "RVLV_E",
+      "label": "RV/LV (超声)",
+      "type": "indicator",
+      "x": 0.1,
+      "y": 0.456,
+      "size": 18
+    },
+    {
+      "id": "LVEI",
+      "label": "室间隔变平 LVEI",
+      "type": "indicator",
+      "x": 0.1,
+      "y": 0.5720000000000001,
+      "size": 16
+    },
+    {
+      "id": "TAPSE",
+      "label": "TAPSE/sPAP",
+      "type": "indicator",
+      "x": 0.1,
+      "y": 0.688,
+      "size": 16
+    },
+    {
+      "id": "RAAREA",
+      "label": "RA 面积",
+      "type": "indicator",
+      "x": 0.1,
+      "y": 0.804,
+      "size": 18
+    },
+    {
+      "id": "RVOT_AT",
+      "label": "RVOT 加速时间",
+      "type": "indicator",
+      "x": 0.1,
+      "y": 0.9199999999999999,
+      "size": 16
+    },
+    {
+      "id": "PA_AO",
+      "label": "PA/AO 比值",
+      "type": "indicator",
+      "x": 0.2,
+      "y": 0.61,
+      "size": 18
+    },
+    {
+      "id": "MPA_CT",
+      "label": "PA 直径 (CT)",
+      "type": "indicator",
+      "x": 0.324,
+      "y": 0.71,
+      "size": 16
+    },
+    {
+      "id": "RVLV_CT",
+      "label": "RV/LV (CT)",
+      "type": "indicator",
+      "x": 0.448,
+      "y": 0.61,
+      "size": 16
+    },
+    {
+      "id": "RVOT_W",
+      "label": "RVOT 壁厚",
+      "type": "indicator",
+      "x": 0.572,
+      "y": 0.71,
+      "size": 16
+    },
+    {
+      "id": "BV5",
+      "label": "BV5 / 外周血管",
+      "type": "indicator",
+      "x": 0.696,
+      "y": 0.61,
+      "size": 16
+    },
+    {
+      "id": "PA_CALC",
+      "label": "PA 壁钙化",
+      "type": "indicator",
+      "x": 0.82,
+      "y": 0.71,
+      "size": 16
+    },
+    {
+      "id": "DLCO",
+      "label": "DLCO",
+      "type": "indicator",
+      "x": 0.9,
+      "y": 0.2,
+      "size": 18
+    },
+    {
+      "id": "PACO2",
+      "label": "PaCO2",
+      "type": "indicator",
+      "x": 0.9,
+      "y": 0.31,
+      "size": 16
+    },
+    {
+      "id": "BNP",
+      "label": "BNP/NT-proBNP",
+      "type": "indicator",
+      "x": 0.9,
+      "y": 0.42000000000000004,
+      "size": 18
+    },
+    {
+      "id": "LAA950",
+      "label": "%LAA-950",
+      "type": "indicator",
+      "x": 0.9,
+      "y": 0.53,
+      "size": 18
+    },
+    {
+      "id": "LAA856",
+      "label": "%LAA-856",
+      "type": "indicator",
+      "x": 0.9,
+      "y": 0.64,
+      "size": 16
+    },
+    {
+      "id": "MLD",
+      "label": "MLD",
+      "type": "indicator",
+      "x": 0.9,
+      "y": 0.75,
+      "size": 16
+    },
+    {
+      "id": "VQ",
+      "label": "V/Q 扫描",
+      "type": "indicator",
+      "x": 0.9,
+      "y": 0.8600000000000001,
+      "size": 16
+    }
+  ],
+  "edges": [
+    {
+      "from": "MPAP",
+      "to": "PH",
+      "rel": "defines",
+      "w": 0.98,
+      "src": "ESC/ERS 2022",
+      "page": "p.3637 (mPAP>20mmHg)"
+    },
+    {
+      "from": "PAWP",
+      "to": "PRECAP",
+      "rel": "defines",
+      "w": 0.9,
+      "src": "ESC/ERS 2022",
+      "page": "p.3637 (PAWP≤15)"
+    },
+    {
+      "from": "PAWP",
+      "to": "POSTCAP",
+      "rel": "defines",
+      "w": 0.9,
+      "src": "ESC/ERS 2022",
+      "page": "p.3637 (PAWP>15)"
+    },
+    {
+      "from": "PVR",
+      "to": "PRECAP",
+      "rel": "defines",
+      "w": 0.9,
+      "src": "ESC/ERS 2022",
+      "page": "p.3637 (PVR>2 WU)"
+    },
+    {
+      "from": "PVR",
+      "to": "SEVERE3",
+      "rel": "defines",
+      "w": 0.92,
+      "src": "ESC/ERS 2022",
+      "page": "p.3690-91 (PVR>5 WU)"
+    },
+    {
+      "from": "MPAPCO",
+      "to": "EXPH",
+      "rel": "defines",
+      "w": 0.8,
+      "src": "ESC/ERS 2022",
+      "page": "p.3637 (>3 mmHg/L/min)"
+    },
+    {
+      "from": "PRECAP",
+      "to": "PAH",
+      "rel": "defines",
+      "w": 0.85,
+      "src": "ESC/ERS 2022",
+      "page": "p.3637"
+    },
+    {
+      "from": "PRECAP",
+      "to": "GROUP3",
+      "rel": "defines",
+      "w": 0.8,
+      "src": "ESC/ERS 2022",
+      "page": "p.3691"
+    },
+    {
+      "from": "PRECAP",
+      "to": "CTEPH",
+      "rel": "defines",
+      "w": 0.8,
+      "src": "ESC/ERS 2022",
+      "page": "p.3637/3694"
+    },
+    {
+      "from": "POSTCAP",
+      "to": "PH_LHD",
+      "rel": "defines",
+      "w": 0.85,
+      "src": "ESC/ERS 2022",
+      "page": "p.3685"
+    },
+    {
+      "from": "COPD_PH",
+      "to": "GROUP3",
+      "rel": "subtype",
+      "w": 0.95,
+      "src": "ESC/ERS 2022",
+      "page": "p.3638 (3.1)"
+    },
+    {
+      "from": "GROUP3",
+      "to": "PH",
+      "rel": "subtype",
+      "w": 0.9,
+      "src": "ESC/ERS 2022",
+      "page": "p.3638"
+    },
+    {
+      "from": "PAH",
+      "to": "PH",
+      "rel": "subtype",
+      "w": 0.9,
+      "src": "ESC/ERS 2022",
+      "page": "p.3638 (Group1)"
+    },
+    {
+      "from": "PH_LHD",
+      "to": "PH",
+      "rel": "subtype",
+      "w": 0.9,
+      "src": "ESC/ERS 2022",
+      "page": "p.3638 (Group2)"
+    },
+    {
+      "from": "CTEPH",
+      "to": "PH",
+      "rel": "subtype",
+      "w": 0.9,
+      "src": "ESC/ERS 2022",
+      "page": "p.3638 (Group4)"
+    },
+    {
+      "from": "EMPHYSEMA",
+      "to": "COPD",
+      "rel": "subtype",
+      "w": 0.9,
+      "src": "GOLD 2024",
+      "page": "emphysema phenotype"
+    },
+    {
+      "from": "COPD",
+      "to": "COPD_PH",
+      "rel": "progresses_to",
+      "w": 0.7,
+      "src": "ESC/ERS 2022",
+      "page": "p.3690 (1-5% severe)"
+    },
+    {
+      "from": "SEVERE3",
+      "to": "COPD_PH",
+      "rel": "describes",
+      "w": 0.8,
+      "src": "ATS/ERS PH-CLD 2024",
+      "page": "severe PH-CLD"
+    },
+    {
+      "from": "VASCPHEN",
+      "to": "SEVERE3",
+      "rel": "describes",
+      "w": 0.8,
+      "src": "ESC/ERS 2022",
+      "page": "p.3691 vascular phenotype"
+    },
+    {
+      "from": "LAA950",
+      "to": "EMPHYSEMA",
+      "rel": "supports",
+      "w": 0.9,
+      "src": "GOLD 2024",
+      "page": "%LAA-950≥20% 中重度"
+    },
+    {
+      "from": "LAA856",
+      "to": "EMPHYSEMA",
+      "rel": "supports",
+      "w": 0.55,
+      "src": "GOLD 2024",
+      "page": "气体陷闭"
+    },
+    {
+      "from": "MLD",
+      "to": "EMPHYSEMA",
+      "rel": "supports",
+      "w": 0.6,
+      "src": "GOLD 2024",
+      "page": "低衰减"
+    },
+    {
+      "from": "LAA950",
+      "to": "COPD",
+      "rel": "supports",
+      "w": 0.6,
+      "src": "GOLD 2024",
+      "page": ""
+    },
+    {
+      "from": "PA_AO",
+      "to": "COPD_PH",
+      "rel": "supports",
+      "w": 0.85,
+      "src": "ESC/ERS 2022",
+      "page": "p.3644 (PA/AO>0.9)"
+    },
+    {
+      "from": "PA_AO",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.6,
+      "src": "ESC/ERS 2022",
+      "page": "p.3644"
+    },
+    {
+      "from": "MPA_CT",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.7,
+      "src": "ESC/ERS 2022",
+      "page": "p.3644 (≥30mm)"
+    },
+    {
+      "from": "RVLV_CT",
+      "to": "COPD_PH",
+      "rel": "supports",
+      "w": 0.78,
+      "src": "ESC/ERS 2022",
+      "page": "p.3644 (RV/LV≥1)"
+    },
+    {
+      "from": "RVOT_W",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.55,
+      "src": "ESC/ERS 2022",
+      "page": "p.3644 (≥6mm)"
+    },
+    {
+      "from": "BV5",
+      "to": "PRUNING",
+      "rel": "supports",
+      "w": 0.75,
+      "src": "Rahaghi 2021 / PVRI 6th WSPH",
+      "page": "BV5↓"
+    },
+    {
+      "from": "PRUNING",
+      "to": "COPD_PH",
+      "rel": "supports",
+      "w": 0.6,
+      "src": "ESC/ERS 2022",
+      "page": "p.3651/3691 vascular pruning"
+    },
+    {
+      "from": "PRUNING",
+      "to": "VASCPHEN",
+      "rel": "supports",
+      "w": 0.6,
+      "src": "ESC/ERS 2022",
+      "page": "p.3691"
+    },
+    {
+      "from": "PA_CALC",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.4,
+      "src": "ESC/ERS 2022",
+      "page": "p.3643"
+    },
+    {
+      "from": "TRV",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.85,
+      "src": "ESC/ERS 2022",
+      "page": "p.3645 (>2.8 m/s)"
+    },
+    {
+      "from": "RVLV_E",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.7,
+      "src": "ESC/ERS 2022",
+      "page": "p.3645 (>1.0, cat A)"
+    },
+    {
+      "from": "LVEI",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.65,
+      "src": "ESC/ERS 2022",
+      "page": "p.3645 (D-shape)"
+    },
+    {
+      "from": "TAPSE",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.6,
+      "src": "ESC/ERS 2022",
+      "page": "p.3645 (TAPSE/sPAP)"
+    },
+    {
+      "from": "RAAREA",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.55,
+      "src": "ESC/ERS 2022",
+      "page": "p.3645 (RA>18cm²)"
+    },
+    {
+      "from": "RVOT_AT",
+      "to": "PRECAP",
+      "rel": "supports",
+      "w": 0.6,
+      "src": "ESC/ERS 2022",
+      "page": "p.3644 (<105ms notch)"
+    },
+    {
+      "from": "RVLV_E",
+      "to": "SEVERE3",
+      "rel": "supports",
+      "w": 0.6,
+      "src": "ESC/ERS 2022",
+      "page": "p.3692 composite score"
+    },
+    {
+      "from": "RAAREA",
+      "to": "SEVERE3",
+      "rel": "supports",
+      "w": 0.55,
+      "src": "ESC/ERS 2022",
+      "page": "p.3692"
+    },
+    {
+      "from": "RAP",
+      "to": "PAH",
+      "rel": "indicates",
+      "w": 0.5,
+      "src": "ESC/ERS 2022",
+      "page": "p.3657 risk"
+    },
+    {
+      "from": "CI",
+      "to": "PAH",
+      "rel": "indicates",
+      "w": 0.55,
+      "src": "ESC/ERS 2022",
+      "page": "p.3657 risk"
+    },
+    {
+      "from": "SVO2",
+      "to": "PAH",
+      "rel": "indicates",
+      "w": 0.5,
+      "src": "ESC/ERS 2022",
+      "page": "p.3657 risk"
+    },
+    {
+      "from": "DLCO",
+      "to": "VASCPHEN",
+      "rel": "supports",
+      "w": 0.7,
+      "src": "ESC/ERS 2022",
+      "page": "p.3691 (DLCO↓<45%)"
+    },
+    {
+      "from": "DLCO",
+      "to": "GROUP3",
+      "rel": "supports",
+      "w": 0.6,
+      "src": "ESC/ERS 2022",
+      "page": "p.3651"
+    },
+    {
+      "from": "PACO2",
+      "to": "VASCPHEN",
+      "rel": "supports",
+      "w": 0.55,
+      "src": "ESC/ERS 2022",
+      "page": "p.3691 (低PaCO2)"
+    },
+    {
+      "from": "BNP",
+      "to": "PH",
+      "rel": "supports",
+      "w": 0.55,
+      "src": "ESC/ERS 2022",
+      "page": "p.3648/3657"
+    },
+    {
+      "from": "BNP",
+      "to": "COPD_PH",
+      "rel": "supports",
+      "w": 0.5,
+      "src": "ATS/ERS PH-CLD 2024",
+      "page": ""
+    },
+    {
+      "from": "VQ",
+      "to": "CTEPH",
+      "rel": "differential",
+      "w": 0.85,
+      "src": "ESC/ERS 2022",
+      "page": "p.3651 (失配灌注)"
+    },
+    {
+      "from": "GROUP3",
+      "to": "PAH",
+      "rel": "differential",
+      "w": 0.6,
+      "src": "ESC/ERS 2022",
+      "page": "p.3691 (低DLCO/低氧)"
+    },
+    {
+      "from": "CTEPH",
+      "to": "PAH",
+      "rel": "differential",
+      "w": 0.6,
+      "src": "ESC/ERS 2022",
+      "page": "p.3694 (机化血栓)"
+    },
+    {
+      "from": "PH_LHD",
+      "to": "PAH",
+      "rel": "differential",
+      "w": 0.55,
+      "src": "ESC/ERS 2022",
+      "page": "p.3685 (PAWP)"
+    },
+    {
+      "from": "ESC",
+      "to": "PH",
+      "rel": "cites",
+      "w": 0.4,
+      "src": "ESC/ERS 2022",
+      "page": ""
+    },
+    {
+      "from": "GOLD",
+      "to": "COPD",
+      "rel": "cites",
+      "w": 0.4,
+      "src": "GOLD 2024",
+      "page": ""
+    },
+    {
+      "from": "ATS",
+      "to": "COPD_PH",
+      "rel": "cites",
+      "w": 0.4,
+      "src": "ATS/ERS PH-CLD 2024",
+      "page": ""
+    },
+    {
+      "from": "WSPH",
+      "to": "PVR",
+      "rel": "cites",
+      "w": 0.4,
+      "src": "PVRI 6th WSPH",
+      "page": ""
+    },
+    {
+      "from": "HUMBERT",
+      "to": "PH",
+      "rel": "cites",
+      "w": 0.4,
+      "src": "Humbert 2022",
+      "page": ""
+    }
+  ]
+}

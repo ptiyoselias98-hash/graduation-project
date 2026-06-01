@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PulmoAgent — 基于大模型与多智能体的肺病诊断系统 | 程炜</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+
+  <!-- ============================== HEADER ============================== -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 3v18M5 8c-2 3-2 7 0 10M19 8c2 3 2 7 0 10M8 11c-1 1.5-1 3.5 0 5M16 11c1 1.5 1 3.5 0 5" stroke="#34d4ff" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="12" cy="12" r="2" fill="#a78bfa" />
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name"><span class="accent">Pulmo</span>Agent <span class="pill">v2.318</span></div>
+        <div class="brand-sub">基于大模型与多智能体的肺病诊断系统 · COPD vs COPD-PH 鉴别诊断</div>
+      </div>
+    </div>
+    <div class="header-status">
+      <div class="status-dot">SYSTEM ACTIVE</div>
+      <div class="author">
+        <strong>程炜</strong> · 2022021006000102<br/>
+        杭州电子科技大学 · 本科毕业设计 · 2026
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================== METRICS STRIP ============================== -->
+  <div class="metric-strip">
+    <span class="label-mini">5-fold CV · v2_260 cohort</span>
+    <div class="metric-chip"><span class="k">macro-F1</span><span class="v cyan" id="m-f1">0.940</span><span class="ci">± 0.037 [0.900, 0.964]</span></div>
+    <div class="metric-chip"><span class="k">AUC</span><span class="v cyan" id="m-auc">0.985</span><span class="ci">± 0.007</span></div>
+    <div class="metric-chip"><span class="k">Recall(PH)</span><span class="v">0.944</span></div>
+    <div class="metric-chip"><span class="k">Recall(COPD)</span><span class="v">0.940</span></div>
+    <div class="metric-chip"><span class="k">N</span><span class="v">260</span><span class="ci">(160 PH + 100 COPD)</span></div>
+    <div class="metric-chip"><span class="k">CM</span><span class="v">TN=94 · FP=6 · FN=9 · TP=151</span></div>
+  </div>
+
+  <!-- ============================== MAIN ============================== -->
+  <main class="main">
+
+    <!-- ===== LEFT RAIL ===== -->
+    <aside class="rail">
+      <div>
+        <h3>案例选择</h3>
+        <div class="case-picker">
+          <select id="case-select"></select>
+        </div>
+      </div>
+
+      <div>
+        <h3>患者信息</h3>
+        <div class="patient-card" id="patient-card"></div>
+      </div>
+
+      <div>
+        <h3>诊断流水线</h3>
+        <div class="timeline">
+          <ol>
+            <li data-stage="0">
+              CT DICOM 数据输入
+              <small>序列读取 · 重采样 · windowing</small>
+            </li>
+            <li data-stage="1">
+              SAT-Nano 多类分割
+              <small>8 类结构 · 109M params</small>
+            </li>
+            <li data-stage="2">
+              SCR 结构化量化
+              <small>17 维结构-密度-血管</small>
+            </li>
+            <li data-stage="3">
+              PulmoKG / GraphRAG 检索
+              <small>45 节点 · 57 边</small>
+            </li>
+            <li data-stage="4">
+              MDT 多智能体辩论
+              <small>Coordinator + 3 specialists</small>
+            </li>
+            <li data-stage="5">
+              最终诊断 + 证据链
+              <small>final_diagnosis + trace_log</small>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div>
+        <h3>系统信息</h3>
+        <div class="system-card" id="system-card"></div>
+      </div>
+    </aside>
+
+    <!-- ===== CENTER STAGE ===== -->
+    <section class="stage">
+      <div class="stage-header">
+        <div class="stage-tabs">
+          <div class="stage-tab" data-stage="0"><span class="num">00</span>数据输入</div>
+          <div class="stage-tab" data-stage="1"><span class="num">01</span>SAT 分割</div>
+          <div class="stage-tab" data-stage="2"><span class="num">02</span>SCR 量化</div>
+          <div class="stage-tab" data-stage="3"><span class="num">03</span>GraphRAG 检索</div>
+          <div class="stage-tab" data-stage="4"><span class="num">04</span>多智能体辩论</div>
+          <div class="stage-tab" data-stage="5"><span class="num">05</span>最终诊断</div>
+        </div>
+      </div>
+
+      <div class="scene-wrap">
+
+        <!-- ============ SCENE 0 — DICOM input ============ -->
+        <div class="scene" data-scene="0">
+          <div class="loader-scene">
+            <div class="loader-left">
+              <div class="loader-head">
+                <span class="dot"></span>
+                <span class="title">DICOM Series Loader</span>
+                <span class="path" id="loader-path">/data/dicom/2026/</span>
+              </div>
+              <div class="file-list" id="dicom-files"></div>
+              <button class="btn primary load-btn" id="btn-load">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zM5 10h4v6h6v-6h4l-7-7-7 7z"/></svg>
+                载入选中扫描
+              </button>
+              <div class="loader-pipeline">
+                <div class="lp-step" data-step="0"><span class="dot"></span>读取 DICOM 序列</div>
+                <div class="lp-step" data-step="1"><span class="dot"></span>重采样 1.0 × 1.0 × 1.0 mm</div>
+                <div class="lp-step" data-step="2"><span class="dot"></span>HU 范围裁剪 [−1024, +600]</div>
+                <div class="lp-step" data-step="3"><span class="dot"></span>Lung ROI 自动定位</div>
+                <div class="lp-step" data-step="4"><span class="dot"></span>送入 SAT-Nano</div>
+              </div>
+            </div>
+            <div class="loader-right">
+              <div class="dicom-tags">
+                <h4>DICOM HEADER · TAGS</h4>
+                <div class="tag-row"><span class="k">(0010,0020) PatientID</span>      <span class="v" id="dt-pid">—</span></div>
+                <div class="tag-row"><span class="k">(0010,1010) PatientAge</span>     <span class="v" id="dt-age">—</span></div>
+                <div class="tag-row"><span class="k">(0010,0040) PatientSex</span>     <span class="v" id="dt-sex">—</span></div>
+                <div class="tag-row"><span class="k">(0008,0070) Manufacturer</span>   <span class="v" id="dt-manuf">—</span></div>
+                <div class="tag-row"><span class="k">(0018,0050) SliceThickness</span> <span class="v" id="dt-st">—</span></div>
+                <div class="tag-row"><span class="k">(0020,1002) ImagesInAcq</span>    <span class="v" id="dt-n">—</span></div>
+                <div class="tag-row"><span class="k">(0018,0060) KVP</span>            <span class="v">120 kVp</span></div>
+                <div class="tag-row"><span class="k">(0028,1050) Window C / W</span>   <span class="v">−600 / 1500</span></div>
+              </div>
+              <div class="scan-card">
+                <div class="scan-vp">
+                  <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+                    <g opacity="0.18">
+                      <line x1="0"   y1="50"  x2="200" y2="50"  stroke="#34d4ff" stroke-width="0.4"/>
+                      <line x1="0"   y1="100" x2="200" y2="100" stroke="#34d4ff" stroke-width="0.4"/>
+                      <line x1="0"   y1="150" x2="200" y2="150" stroke="#34d4ff" stroke-width="0.4"/>
+                      <line x1="50"  y1="0"   x2="50"  y2="200" stroke="#34d4ff" stroke-width="0.4"/>
+                      <line x1="100" y1="0"   x2="100" y2="200" stroke="#34d4ff" stroke-width="0.4"/>
+                      <line x1="150" y1="0"   x2="150" y2="200" stroke="#34d4ff" stroke-width="0.4"/>
+                    </g>
+                    <ellipse cx="100" cy="108" rx="78" ry="58" fill="rgba(40,55,90,.35)" stroke="rgba(140,170,220,.45)" stroke-width="0.8"/>
+                    <path d="M 50 90 Q 40 110 45 130 Q 55 148 75 150 Q 90 150 92 132 Q 92 110 85 95 Q 70 86 50 90 Z"
+                          fill="rgba(8,13,28,.85)" stroke="rgba(180,195,230,.30)" stroke-width="0.6"/>
+                    <path d="M 150 90 Q 160 110 155 130 Q 145 148 125 150 Q 110 150 108 132 Q 108 110 115 95 Q 130 86 150 90 Z"
+                          fill="rgba(8,13,28,.85)" stroke="rgba(180,195,230,.30)" stroke-width="0.6"/>
+                    <ellipse cx="100" cy="118" rx="14" ry="16" fill="rgba(180,195,230,.18)"/>
+                    <ellipse cx="100" cy="155" rx="9"  ry="6"  fill="rgba(180,195,230,.22)"/>
+                  </svg>
+                  <div class="scan-line" id="scan-line"></div>
+                  <span class="cnr tl"></span><span class="cnr tr"></span>
+                  <span class="cnr bl"></span><span class="cnr br"></span>
+                  <div class="scan-label" id="scan-label">SLICE 000 / 000 · WAITING</div>
+                </div>
+                <div class="load-bar"><div class="load-bar-fill" id="load-bar-fill"></div></div>
+                <div class="load-text" id="load-text">等待用户载入扫描 — 请点选左侧 DICOM 序列后载入</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ SCENE 1 — SAT segmentation ============ -->
+        <div class="scene" data-scene="1">
+          <div class="anatomy">
+            <div class="anatomy-canvas">
+              <div class="badge-corner">SAT-Nano · 轴位 T7</div>
+              <div class="badge-corner tr"><span id="seg-progress">0 / 8</span></div>
+              <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
+                <!-- body outline -->
+                <ellipse class="anat-shape body-outline" cx="300" cy="305" rx="245" ry="195"/>
+                <!-- ribs (decorative) -->
+                <path d="M 80 270 Q 300 130 520 270" stroke="rgba(140,170,220,.18)" fill="none" stroke-width="1"/>
+                <path d="M 70 320 Q 300 180 530 320" stroke="rgba(140,170,220,.18)" fill="none" stroke-width="1"/>
+                <path d="M 75 370 Q 300 230 525 370" stroke="rgba(140,170,220,.18)" fill="none" stroke-width="1"/>
+                <path d="M 90 420 Q 300 280 510 420" stroke="rgba(140,170,220,.18)" fill="none" stroke-width="1"/>
+
+                <!-- LEFT lung (image-left, patient-right) -->
+                <path id="anat-lung-r" class="anat-shape lung"
+                  d="M 110 200 Q 90 280 95 360 Q 105 430 145 470 Q 200 480 230 470 Q 240 430 245 380 Q 248 320 235 250 Q 220 200 180 185 Q 140 185 110 200 Z"/>
+                <!-- RIGHT lung (image-right, patient-left) -->
+                <path id="anat-lung-l" class="anat-shape lung"
+                  d="M 490 200 Q 510 280 505 360 Q 495 430 455 470 Q 400 480 370 470 Q 360 430 355 380 Q 352 320 365 250 Q 380 200 420 185 Q 460 185 490 200 Z"/>
+
+                <!-- trachea -->
+                <ellipse id="anat-airway" class="anat-shape airway" cx="300" cy="180" rx="14" ry="14"/>
+                <!-- airway sub-branches -->
+                <path id="anat-airway2" class="anat-shape airway"
+                  d="M 290 192 Q 270 220 250 250 M 310 192 Q 330 220 350 250" stroke-width="3" fill="none"/>
+
+                <!-- spine -->
+                <ellipse class="anat-shape spine" cx="300" cy="470" rx="32" ry="22"/>
+
+                <!-- ascending aorta -->
+                <ellipse id="anat-aa" class="anat-shape aa" cx="270" cy="250" rx="20" ry="20"/>
+
+                <!-- pulmonary artery main trunk -->
+                <ellipse id="anat-pa" class="anat-shape pa" cx="320" cy="252" rx="24" ry="22"/>
+
+                <!-- pulmonary vein (smaller, posterior) -->
+                <ellipse id="anat-pv" class="anat-shape pv" cx="345" cy="305" rx="13" ry="20"/>
+                <ellipse id="anat-pv2" class="anat-shape pv" cx="248" cy="305" rx="13" ry="20"/>
+
+                <!-- heart compound: RA, RV, LV -->
+                <!-- right atrium (patient-right; image-left side of heart) -->
+                <path id="anat-ra" class="anat-shape ra"
+                  d="M 250 305 Q 230 320 232 365 Q 240 410 280 412 Q 295 405 300 380 Q 298 340 290 320 Q 270 305 250 305 Z"/>
+                <!-- right ventricle -->
+                <path id="anat-rv" class="anat-shape rv"
+                  d="M 270 365 Q 250 395 270 430 Q 310 450 350 440 Q 360 420 355 395 Q 345 370 320 360 Q 295 358 270 365 Z"/>
+                <!-- left ventricle -->
+                <path id="anat-lv" class="anat-shape lv"
+                  d="M 340 340 Q 320 360 325 405 Q 335 440 370 445 Q 405 440 410 405 Q 408 365 395 345 Q 370 330 340 340 Z"/>
+
+                <!-- labels (annotations) -->
+                <text class="anat-label" id="lbl-lung-r" x="160" y="335">LUNG</text>
+                <text class="anat-label" id="lbl-lung-l" x="430" y="335">LUNG</text>
+                <text class="anat-label" id="lbl-airway" x="296" y="167">TRACHEA</text>
+                <text class="anat-label" id="lbl-aa" x="246" y="254">AA</text>
+                <text class="anat-label" id="lbl-pa" x="312" y="256">PA</text>
+                <text class="anat-label" id="lbl-pv" x="338" y="308">PV</text>
+                <text class="anat-label" id="lbl-ra" x="262" y="370">RA</text>
+                <text class="anat-label" id="lbl-rv" x="305" y="408">RV</text>
+                <text class="anat-label" id="lbl-lv" x="367" y="405">LV</text>
+              </svg>
+            </div>
+
+            <div class="anatomy-legend">
+              <h4>SAT-Nano 文本提示 (TEXT_PROMPTS)</h4>
+              <div class="legend-item" data-leg="lung"><span class="swatch lung"></span><span class="name">lung</span><span class="pct">—</span></div>
+              <div class="legend-item" data-leg="pa"><span class="swatch pa"></span><span class="name">pulmonary artery</span><span class="pct">—</span></div>
+              <div class="legend-item" data-leg="pv"><span class="swatch pv"></span><span class="name">pulmonary vein</span><span class="pct">—</span></div>
+              <div class="legend-item" data-leg="airway"><span class="swatch airway"></span><span class="name">airway tree</span><span class="pct">—</span></div>
+              <div class="legend-item" data-leg="rv"><span class="swatch rv"></span><span class="name">right ventricle</span><span class="pct">—</span></div>
+              <div class="legend-item" data-leg="lv"><span class="swatch lv"></span><span class="name">left ventricle</span><span class="pct">—</span></div>
+              <div class="legend-item" data-leg="ra"><span class="swatch ra"></span><span class="name">right atrium</span><span class="pct">—</span></div>
+              <div class="legend-item" data-leg="aa"><span class="swatch aa"></span><span class="name">ascending aorta</span><span class="pct">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ SCENE 2 — SCR computation ============ -->
+        <div class="scene" data-scene="2">
+          <div class="scr-scene">
+            <div class="scr-formula-card">
+              <h2>SCR 量化算子 · 论文式 (3.1)–(3.5)</h2>
+              <div id="formula-list"></div>
+            </div>
+            <div class="scr-json-card">
+              <div class="scr-json-head">
+                <span class="dot"></span>
+                <span class="name" id="scr-json-name">SCR · patient_id.json</span>
+                <span class="schema-pill">SCHEMA v3.3</span>
+              </div>
+              <div class="scr-json" id="scr-json"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ SCENE 3 — PulmoKG / GraphRAG ============ -->
+        <div class="scene" data-scene="3">
+          <div class="kg-scene">
+            <div class="kg-canvas">
+              <div class="kg-badge-tl">PulmoKG · 45 · 57</div>
+              <div class="kg-badge-tr">检索 · <b id="kg-retrieved">0</b> / 5 chunk · Top-K=5</div>
+              <svg id="kg-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet"></svg>
+            </div>
+            <div class="kg-side">
+              <h4>GraphRAG 检索结果</h4>
+              <div id="kg-chunks"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ SCENE 4 — MDT debate ============ -->
+        <div class="scene" data-scene="4">
+          <div class="mdt-scene">
+            <div class="mdt-coord-bar">
+              <div class="coord-avatar">C</div>
+              <div class="coord-info">
+                <div class="name">CoordinatorAgent · MDT 调度</div>
+                <div class="role">基于 Continue / Terminate / Complete 控制信号，按 ≥⌈n/2⌉ 共识终止</div>
+              </div>
+              <div class="coord-state" id="coord-state">ROUND <span class="vote">—</span> · WAITING</div>
+            </div>
+            <div class="mdt-rounds" id="mdt-rounds"></div>
+          </div>
+        </div>
+
+        <!-- ============ SCENE 5 — Verdict ============ -->
+        <div class="scene" data-scene="5">
+          <div class="verdict-scene">
+            <div class="verdict-main" id="verdict-main">
+              <div class="verdict-pretitle">FINAL DIAGNOSIS</div>
+              <div class="verdict-title" id="verdict-title">—</div>
+              <div class="verdict-conf">
+                <span class="label">CONFIDENCE</span>
+                <span class="num" id="verdict-conf-num">0.00</span>
+                <div class="conf-bar-big"><div class="fill" id="verdict-conf-fill"></div></div>
+              </div>
+              <div class="verdict-evidence">
+                <h4>EVIDENCE CHAIN — 可审计证据链</h4>
+                <ol id="verdict-ev"></ol>
+              </div>
+              <div class="verdict-meta">
+                <div class="item"><span class="k">consensus_round:</span> <span class="v" id="vm-round">—</span></div>
+                <div class="item"><span class="k">trace_id:</span> <span class="v" id="vm-trace">—</span></div>
+                <div class="item"><span class="k">fallback:</span> <span class="v" id="vm-fb">false</span></div>
+              </div>
+            </div>
+            <div class="verdict-side">
+              <div class="gt-compare">
+                <h4>GT 对照</h4>
+                <div class="row gt"><span class="k">Ground Truth</span><span class="v" id="gt-v">—</span></div>
+                <div class="row pred"><span class="k">PulmoAgent</span><span class="v" id="pred-v">—</span></div>
+                <div class="verdict-match" id="match-text">—</div>
+              </div>
+              <div class="fallback-card" id="fallback-card">
+                <h4>FALLBACK RECOMMENDATION</h4>
+                <p id="fallback-text">—</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== RIGHT SCR PANEL ===== -->
+    <aside class="scr-panel">
+      <h3>Structured Clinical Report</h3>
+      <div class="scr-section" data-section="struct">
+        <div class="head">
+          <span class="tag struct">STRUCT</span>
+          <span class="name">structural_metrics</span>
+          <span class="count">心脏 / 大血管</span>
+        </div>
+        <div id="scr-struct"></div>
+      </div>
+      <div class="scr-section" data-section="density">
+        <div class="head">
+          <span class="tag density">DENSITY</span>
+          <span class="name">density_metrics</span>
+          <span class="count">肺气肿评估</span>
+        </div>
+        <div id="scr-density"></div>
+      </div>
+      <div class="scr-section" data-section="vessel">
+        <div class="head">
+          <span class="tag vessel">VESSEL</span>
+          <span class="name">vessel_tree_metrics</span>
+          <span class="count">血管树量化</span>
+        </div>
+        <div id="scr-vessel"></div>
+      </div>
+      <div class="scr-section" data-section="qual">
+        <div class="head">
+          <span class="tag qual">QUAL</span>
+          <span class="name">qualitative_findings</span>
+          <span class="count">影像描述</span>
+        </div>
+        <div id="scr-qual"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ============================== CONTROLS ============================== -->
+  <footer class="controls">
+    <div class="ctrl-group">
+      <button class="btn primary" id="btn-play">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <span id="btn-play-label">运行流水线</span>
+      </button>
+      <button class="btn" id="btn-step">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 4v16l5-5V9zm6 0v16l11-8z"/></svg>
+        单步
+      </button>
+      <button class="btn ghost" id="btn-reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        重置
+      </button>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress">
+        <div class="fill" id="prog-fill"></div>
+        <div class="markers">
+          <span style="left: 20%"></span>
+          <span style="left: 40%"></span>
+          <span style="left: 60%"></span>
+          <span style="left: 80%"></span>
+        </div>
+      </div>
+      <div class="progress-label" id="prog-label">STAGE 0 / 5</div>
+    </div>
+    <div class="ctrl-group">
+      <span class="label-mini" style="color: var(--text-dim); font-family: var(--mono); font-size: 10px; letter-spacing: 1.4px;">PLAYBACK</span>
+      <select class="speed-select" id="speed">
+        <option value="0.05">0.05×</option>
+        <option value="0.5">0.5×</option>
+        <option value="1">1.0×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2" selected>2.0×</option>
+        <option value="4">4.0×</option>
+      </select>
+    </div>
+  </footer>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
